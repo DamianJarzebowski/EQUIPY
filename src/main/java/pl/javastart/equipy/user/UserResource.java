@@ -12,8 +12,7 @@ public class UserResource {
 
     private UserService userService;
 
-    // Dlaczego tutaj musze stworzyć konstruktor poniżej
-    public UserResource(UserService userService) {
+    UserResource(UserService userService) {
         this.userService = userService;
     }
 
