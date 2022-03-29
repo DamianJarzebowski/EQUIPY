@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="001-testdata" author="damianjarzebowski">
+        <insert tableName="user">
+            <column name="first_name" value="Damian"/>
+            <column name="last_name" value="Jarząbek"/>
+            <column name="pesel" value="123456789"/>
+        </insert>
+        <insert tableName="user">
+            <column name="first_name" value="Asia"/>
+            <column name="last_name" value="Siudek"/>
+            <column name="pesel" value="987654321"/>
+        </insert>
+    </changeSet>
+</databaseChangeLog>
