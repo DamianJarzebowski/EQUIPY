@@ -15,5 +15,15 @@
             <column name="last_name" value="Siudek"/>
             <column name="pesel" value="987654321"/>
         </insert>
+        <insert tableName="user">
+            <column name="first_name" value="Barbara"/>
+            <column name="last_name" value="Krawczyk"/>
+            <column name="pesel" value="567891234"/>
+        </insert>
+        <insert tableName="user">
+            <column name="first_name" value="Krzysztof"/>
+            <column name="last_name" value="Zalewski"/>
+            <column name="pesel" value="987651234"/>
+        </insert>
     </changeSet>
 </databaseChangeLog>

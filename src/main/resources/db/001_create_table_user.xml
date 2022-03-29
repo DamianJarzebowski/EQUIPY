@@ -13,5 +13,9 @@
             <column name="last_name" type="VARCHAR(20)"/>
             <column name="pesel" type="VARCHAR(11)"/>
         </createTable>
+        <addUniqueConstraint
+                columnNames="pesel"
+                tableName="user"
+                validate="true"/>
     </changeSet>
 </databaseChangeLog>
