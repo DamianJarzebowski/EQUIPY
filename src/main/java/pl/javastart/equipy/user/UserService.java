@@ -15,7 +15,6 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    // Co tutaj sie dokładnie zadziało (co sie dzieje na wywołanej liscie)
     List<UserDto> findAll() {
         return userRepository.findAll()
                 .stream()
@@ -23,7 +22,13 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    // Dlaczego po 2 próbie wyszukiwania wyskakuje wyjątek? (Problem rozwiązany, trzeba było zmienić w pom wersje springa z 2.6.5 na 2.6.3 ale DLACZEGO?
+    List<String> map(List<Integer> items) {
+        return items
+                .stream()
+                .map(i -> i.toString())
+                .collect(Collectors.toList());
+    }
+
     List<UserDto> findByLastName(String lastName) {
         return userRepository.findAllByLastNameContainingIgnoreCase(lastName)
                 .stream()
@@ -31,15 +36,38 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    //  Nie jestem pewien czy dobrze rozumiem te metode jest strasznie skrótowa jak ona przelatuje baze danych i sprawdza czy ten pesel juz istnieje i jak to jest z obśługiwaniem tego wyjątku przez responsestatus
     UserDto save(UserDto userDto) {
         Optional<User> userByPesel = userRepository.findByPesel(userDto.getPesel());
+        /*
+        if (userByPesel.isPresent()) {
+            throw new DuplicatePeselException();
+        }
+         */
         userByPesel.ifPresent(u -> {
             throw  new DuplicatePeselException();
         });
+        return mapAndSaveUser(userDto);
+    }
+
+    UserDto update(UserDto userDto) {
+        Optional<User> userByPesel = userRepository.findByPesel(userDto.getPesel());
+        userByPesel.ifPresent(u -> {
+            if(u.getId().equals(userDto.getId()))
+                throw new DuplicatePeselException();
+        });
+        return mapAndSaveUser(userDto);
+    }
+
+    UserDto mapAndSaveUser(UserDto userDto) {
         User userEntity = UserMapper.toEntity(userDto);
         User savedUser = userRepository.save(userEntity);
         return UserMapper.toDto(savedUser);
     }
+
+    Optional<UserDto> findById(Long id) {
+        return userRepository.findById(id).map(UserMapper::toDto);
+    }
+
+
 
 }

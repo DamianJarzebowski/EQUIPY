@@ -19,16 +19,15 @@ public class UserResource {
         this.userService = userService;
     }
 
-    // Request Param co to tu robi czym jest required (Sprawia, ze parametr jest domyślnie nieobecny?)
     @GetMapping("")
-    public List<UserDto> findAll(@RequestParam(required=false) String lastName) {
+    public List<UserDto> findAll(String lastName) {
         if (lastName != null)
             return userService.findByLastName(lastName);
         else
             return userService.findAll();
     }
 
-    // Co to jest to uri i servleturi...
+    // Co to jest to uri i servleturi... (Cos stare śmierdzi i tak sie nie robi, servlet nie istnieja w javie reaktywnej)
     @PostMapping("")
     public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
         if (user.getId() != null)
@@ -40,6 +39,22 @@ public class UserResource {
                 .buildAndExpand(savedUser.getId())
                 .toUri();
         return ResponseEntity.created(location).body(savedUser);
+    }
+
+    // ResponseEntity do poczytania...
+    @GetMapping("/{id}")
+    public ResponseEntity<UserDto> findById(@PathVariable Long id) {
+        return userService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto user) {
+        if(!id.equals(user.getId()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany obiekt musi mieć id zgodne z id w ścieżce zasobu");
+        UserDto updatedUser = userService.update(user);
+        return ResponseEntity.ok(updatedUser);
     }
 
 }
