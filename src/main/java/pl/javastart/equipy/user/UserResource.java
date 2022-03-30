@@ -21,17 +21,17 @@ public class UserResource {
 
     // Request Param co to tu robi czym jest required (Sprawia, ze parametr jest domyślnie nieobecny?)
     @GetMapping("")
-    public List<UserDto> findAll(@RequestParam(required = false) String lastName) {
+    public List<UserDto> findAll(@RequestParam(required=false) String lastName) {
         if (lastName != null)
-            return  userService.findByLastName(lastName);
+            return userService.findByLastName(lastName);
         else
-        return userService.findAll();
+            return userService.findAll();
     }
 
     // Co to jest to uri i servleturi...
     @PostMapping("")
     public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
-        if(user.getId() != null)
+        if (user.getId() != null)
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt nie może mieć ustawionego id");
         UserDto savedUser = userService.save(user);
         URI location = ServletUriComponentsBuilder

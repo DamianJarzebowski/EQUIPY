@@ -23,7 +23,7 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
-    // Dlaczego po 2 próbie wyszukiwania wyskakuje wyjątek?
+    // Dlaczego po 2 próbie wyszukiwania wyskakuje wyjątek? (Problem rozwiązany, trzeba było zmienić w pom wersje springa z 2.6.5 na 2.6.3 ale DLACZEGO?
     List<UserDto> findByLastName(String lastName) {
         return userRepository.findAllByLastNameContainingIgnoreCase(lastName)
                 .stream()
