@@ -3,7 +3,7 @@ package pl.javastart.equipy.user;
 public class UserMapper {
 
     static UserDto toDto(User user) {
-        UserDto dto = new UserDto();
+        var dto = new UserDto();
 
         dto.setId(user.getId());
         dto.setFirstName(user.getFirstName());
@@ -13,7 +13,7 @@ public class UserMapper {
     }
 
     static User toEntity(UserDto user) {
-        User entity = new User();
+        var entity = new User();
 
         entity.setId(user.getId());
         entity.setFirstName(user.getFirstName());
