@@ -7,9 +7,11 @@
     <changeSet id="002-testdata-1" author="damianjarzebowski">
         <insert tableName="category">
             <column name="name" value="Laptopy"/>
+            <column name="description" value="Mobilny komputer" />
         </insert>
         <insert tableName="category">
             <column name="name" value="Monitory"/>
+            <column name="description" value="Wyświetlacze obrazu" />
         </insert>
     </changeSet>
 </databaseChangeLog>
