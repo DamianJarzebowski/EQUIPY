@@ -27,7 +27,7 @@ public class AssetMapper {
         return dto;
     }
 
-    // Dlaczego nie moge pobrac kategori z dto tylko ustawiam ja jakos na około
+    // Dlaczego nie moge pobrac kategori z dto tylko ustawiam ja jakos na około Przekształcenie obiektu Asset na AssetDto sprowadza się jedynie do przepisania odpowiednich pól z jednego obiektu do drugiego. W przypadku przekształcania Dto na Asset musimy dodatkowo skorzystać z CategoryRepository w celu pobrania obiektu Category po nazwie. Jeżeli obiekt Dto zawiera nazwę kategorii, której nie ma w bazie pole to pozostanie nieustawione (null) w obiekcie encji.
     Asset toEntity(AssetDto assetDto) {
         var entity = new Asset();
 

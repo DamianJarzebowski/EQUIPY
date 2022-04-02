@@ -6,5 +6,10 @@
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
     <include file="001_create_table_user.xml" relativeToChangelogFile="true" />
     <include file="testdata/001_user_test.xml" relativeToChangelogFile="true" />
+    <include file="002_create_table_category.xml" relativeToChangelogFile="true" />
+    <include file="003_create_table_asset.xml" relativeToChangelogFile="true" />
+    <include file="004_create_FK_asset_category.xml" relativeToChangelogFile="true" />
+    <include file="testdata/002_category_test.xml" relativeToChangelogFile="true" />
+    <include file="testdata/003_asset_test.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>
