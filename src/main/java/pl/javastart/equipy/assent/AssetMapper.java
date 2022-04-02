@@ -1,7 +1,10 @@
 package pl.javastart.equipy.assent;
 
 import org.springframework.stereotype.Service;
+import pl.javastart.equipy.category.Category;
 import pl.javastart.equipy.category.CategoryRepository;
+
+import java.util.Optional;
 
 @Service
 public class AssetMapper {
@@ -13,7 +16,7 @@ public class AssetMapper {
     }
 
     AssetDto toDto(Asset asset) {
-        AssetDto dto = new AssetDto();
+        var dto = new AssetDto();
 
         dto.setId(asset.getId());
         dto.setName(asset.getName());
@@ -23,4 +26,18 @@ public class AssetMapper {
             dto.setCategory(asset.getCategory().getName());
         return dto;
     }
+
+    // Dlaczego nie moge pobrac kategori z dto tylko ustawiam ja jakos na około
+    Asset toEntity(AssetDto assetDto) {
+        var entity = new Asset();
+
+        entity.setId(assetDto.getId());
+        entity.setName(assetDto.getName());
+        entity.setDescription(assetDto.getDescription());
+        Optional<Category> category = categoryRepository.findByName(assetDto.getCategory());
+        category.ifPresent(entity::setCategory);
+        entity.setSerialNumber(assetDto.getSerialNumber());
+        return entity;
+    }
+
 }
