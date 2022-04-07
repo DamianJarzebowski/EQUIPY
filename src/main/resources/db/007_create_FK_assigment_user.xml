@@ -11,7 +11,7 @@
                 constraintName="FK_user_assigment"
 
                 baseColumnNames="user_id"
-                baseTableName="assigment"
+                baseTableName="assignment"
 
                 referencedColumnNames="id"
                 referencedTableName="user"

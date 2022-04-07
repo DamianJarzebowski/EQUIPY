@@ -1,7 +1,10 @@
 package pl.javastart.equipy.user;
 
 import org.springframework.stereotype.Service;
+import pl.javastart.equipy.assigment.AssignmentDto;
+import pl.javastart.equipy.assigment.AssignmentMapper;
 
+import java.nio.file.attribute.UserPrincipalNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -66,6 +69,15 @@ public class UserService {
 
     Optional<UserDto> findById(Long id) {
         return userRepository.findById(id).map(UserMapper::toDto);
+    }
+
+    List<AssignmentDto> getUserAssignments(Long userId) {
+        return userRepository.findById(userId)
+                .map(User::getAssignments)
+                .orElseThrow(UserNotFoundException::new)
+                .stream()
+                .map(AssignmentMapper::toDto)
+                .collect(Collectors.toList());
     }
 
 

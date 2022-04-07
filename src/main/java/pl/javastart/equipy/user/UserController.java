@@ -5,6 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+import pl.javastart.equipy.assigment.AssignmentDto;
 
 import java.net.URI;
 import java.util.List;
@@ -55,6 +56,11 @@ public class UserController {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany obiekt musi mieć id zgodne z id w ścieżce zasobu");
         UserDto updatedUser = userService.update(user);
         return ResponseEntity.ok(updatedUser);
+    }
+
+    @GetMapping("/{id}/assignments")
+    public List<AssignmentDto> getUserAssignments(@PathVariable Long id) {
+        return  userService.getUserAssignments(id);
     }
 
 }

@@ -11,7 +11,7 @@
                 constraintName="FK_asset_assigment"
 
                 baseColumnNames="asset_id"
-                baseTableName="assigment"
+                baseTableName="assignment"
 
                 referencedColumnNames="id"
                 referencedTableName="asset"
