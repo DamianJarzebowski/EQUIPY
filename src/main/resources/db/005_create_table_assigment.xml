@@ -9,10 +9,10 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="start" type="VARCHAR)"/>
-            <column name="end" type="VARCHAR(20)"/>
+            <column name="start" type="datetime2"/>
+            <column name="end" type="datetime2"/>
             <column name="user_id" type="BIGINT"/>
-            <column name="asser_id" type="BIGINT"/>
+            <column name="asset_id" type="BIGINT"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

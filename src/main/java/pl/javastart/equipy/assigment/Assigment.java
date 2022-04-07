@@ -20,6 +20,6 @@ public class Assigment {
     @JoinColumn(name = "user_id")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "asser_id")
+    @JoinColumn(name = "asset_id")
     private Asset asset;
 }
