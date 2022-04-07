@@ -33,12 +33,31 @@ public class AssetService {
 
     AssetDto save(AssetDto assetDto) {
         Optional<Asset> assetBySerialNo = assetRepository.findBySerialNumber(assetDto.getSerialNumber());
-        assetBySerialNo.ifPresent( a -> {
+        assetBySerialNo.ifPresent(a -> {
             throw new DuplicateSerialNumberException();
         });
+        return mapAndSave(assetDto);
+    }
+
+    AssetDto update(AssetDto asset) {
+        Optional<Asset> assetBySerialNo = assetRepository.findBySerialNumber(asset.getSerialNumber());
+        assetBySerialNo.ifPresent(a -> {
+            if(!a.getId().equals(asset.getId()))
+                throw new DuplicateSerialNumberException();
+        });
+        return mapAndSave(asset);
+    }
+
+    private AssetDto mapAndSave(AssetDto assetDto) {
         Asset assetEntity = assetMapper.toEntity(assetDto);
         Asset savedAsset = assetRepository.save(assetEntity);
         return assetMapper.toDto(savedAsset);
     }
+
+    Optional<AssetDto> findById(Long id) {
+        return assetRepository.findById(id).map(assetMapper::toDto);
+    }
+
+
 
 }

@@ -40,4 +40,20 @@ public class AssetController {
         return ResponseEntity.created(location).body(savedAsset);
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<AssetDto> findById(@PathVariable Long id) {
+        return assetService.findById(id)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<AssetDto> update(@PathVariable Long id,
+                                           @RequestBody AssetDto asset) {
+        if(!id.equals(asset.getId()))
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany obiekt powinien mieć id zgodne z id ścieżki zasobu");
+        AssetDto updatedAsset = assetService.update(asset);
+        return ResponseEntity.ok(updatedAsset);
+    }
+
 }
