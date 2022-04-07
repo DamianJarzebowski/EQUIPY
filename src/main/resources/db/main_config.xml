@@ -14,4 +14,5 @@
     <include file="005_create_table_assigment.xml" relativeToChangelogFile="true"/>
     <include file="006_create_FK_assigment_asset.xml" relativeToChangelogFile="true"/>
     <include file="007_create_FK_assigment_user.xml" relativeToChangelogFile="true"/>
+    <include file="testdata/004_assignment_test.xml" relativeToChangelogFile="true"/>
 </databaseChangeLog>

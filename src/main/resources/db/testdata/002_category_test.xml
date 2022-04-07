@@ -4,14 +4,17 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
-    <changeSet id="002-testdata-1" author="damianjarzebowski">
+    <changeSet id="002-testdata" author="damianjarzebowski">
+
         <insert tableName="category">
             <column name="name" value="Laptopy"/>
             <column name="description" value="Mobilny komputer" />
         </insert>
+
         <insert tableName="category">
             <column name="name" value="Monitory"/>
             <column name="description" value="Wyświetlacze obrazu" />
         </insert>
+
     </changeSet>
 </databaseChangeLog>

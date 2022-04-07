@@ -4,24 +4,28 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
-    <changeSet id="003-testdata-1" author="damianjarzebowski">
+    <changeSet id="003-testdata" author="damianjarzebowski">
+
         <insert tableName="asset">
             <column name="name" value="Asus MateBook D"/>
             <column name="description" value="15 calowy laptop, i5, 8GB DDR3, kolor czarny"/>
             <column name="serial_number" value="GAEGZZGD1256"/>
             <column name="category_id" value="1"/>
         </insert>
+
         <insert tableName="asset">
             <column name="name" value="Apple MacBook Pro 2015"/>
             <column name="description" value="13 calowy laptop, i5, 16GB DDR3, SSD 256GB, kolor srebrny"/>
             <column name="serial_number" value="GDGAJJ146823"/>
             <column name="category_id" value="1"/>
         </insert>
+
         <insert tableName="asset">
             <column name="name" value="AOC 24G2U"/>
             <column name="description" value="24 cali, 1920 x 1080px, Proporcje ekranu: 16:9"/>
             <column name="serial_number" value="GDGERYRA823"/>
             <column name="category_id" value="2"/>
         </insert>
+
     </changeSet>
 </databaseChangeLog>
