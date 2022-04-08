@@ -4,20 +4,19 @@ import pl.javastart.equipy.assent.Asset;
 
 public class AssignmentMapper {
 
-    public static AssignmentDto toDto(Assignment assignment) {
+        public static AssignmentDto toDto(Assignment assignment){
 
-        var dto = new AssignmentDto();
+            var dto = new AssignmentDto();
+            var user = assignment.getUser();
 
-        dto.setId(assignment.getId());
-        dto.setAssetId(assignment.getId());
-        dto.setStart(assignment.getStart());
-        dto.setEnd(assignment.getEnd());
+            dto.setId(assignment.getId());
+            dto.setStart(assignment.getStart());
+            dto.setEnd(assignment.getEnd());
+            dto.setUserId(user.getId());
+            Asset asset = assignment.getAsset();
+            dto.setAssetId(asset.getId());
+            return dto;
+        }
 
-        Asset asset = assignment.getAsset();
-
-        dto.setAssetName(asset.getName());
-        dto.setAssetSerialNumber(asset.getSerialNumber());
-        return dto;
     }
 
-}

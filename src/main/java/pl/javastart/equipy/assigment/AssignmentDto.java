@@ -12,6 +12,4 @@ public class AssignmentDto {
     private LocalDateTime end;
     private Long assetId;
     private Long userId;
-    private String assetName;
-    private String assetSerialNumber;
 }
