@@ -1,6 +1,7 @@
 package pl.javastart.equipy.assent;
 
 import org.springframework.stereotype.Service;
+import pl.javastart.equipy.assigment.Assignment;
 
 import java.util.List;
 import java.util.Optional;
@@ -58,6 +59,14 @@ public class AssetService {
         return assetRepository.findById(id).map(assetMapper::toDto);
     }
 
+    List<AssetAssignmentDto> getAssetAssignments(Long id) {
+        return assetRepository.findById(id)
+                .map(Asset::getAssignments)
+                .orElseThrow(AssetNotFoundException::new)
+                .stream()
+                .map(AssetAssignmentMapper::toDto)
+                .collect(Collectors.toList());
+    }
 
 
 }
