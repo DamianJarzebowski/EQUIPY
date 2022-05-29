@@ -30,7 +30,7 @@ public class AssetController {
     @PostMapping("")
     public ResponseEntity<AssetDto> save(@RequestBody AssetDto assetDto) {
         if (assetDto.getId() != null)
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt, nie może być ustawionego id");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Zapisywany obiekt, nie może mieć ustawionego id");
         AssetDto savedAsset = assetService.save(assetDto);
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
