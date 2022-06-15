@@ -9,7 +9,7 @@ import java.util.Optional;
 @Service
 public class AssetMapper {
 
-    private CategoryRepository categoryRepository;
+    private final CategoryRepository categoryRepository;
 
     public AssetMapper(CategoryRepository categoryRepository) {
         this.categoryRepository = categoryRepository;

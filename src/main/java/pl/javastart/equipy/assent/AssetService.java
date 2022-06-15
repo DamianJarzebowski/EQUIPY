@@ -1,35 +1,30 @@
 package pl.javastart.equipy.assent;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import pl.javastart.equipy.assigment.Assignment;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class AssetService {
 
-    private AssetRepository assetRepository;
-    private AssetMapper assetMapper;
-
-    public AssetService(AssetRepository assetRepository, AssetMapper assetMapper) {
-        this.assetRepository = assetRepository;
-        this.assetMapper = assetMapper;
-    }
+    private final AssetRepository assetRepository;
+    private final AssetMapper assetMapper;
 
     List<AssetDto> findAll() {
         return assetRepository.findAll()
                 .stream()
                 .map(assetMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     List<AssetDto> findAllByNameOrSerialNumber(String text) {
         return assetRepository.findAllByNameOrSerialNumber(text)
                 .stream()
                 .map(assetMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     AssetDto save(AssetDto assetDto) {
@@ -65,7 +60,7 @@ public class AssetService {
                 .orElseThrow(AssetNotFoundException::new)
                 .stream()
                 .map(AssetAssignmentMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 
