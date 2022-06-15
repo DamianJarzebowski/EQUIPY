@@ -6,7 +6,6 @@ import pl.javastart.equipy.assigment.AssignmentMapper;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -21,21 +20,21 @@ public class UserService {
         return userRepository.findAll()
                 .stream()
                 .map(UserMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     List<String> map(List<Integer> items) {
         return items
                 .stream()
                 .map(i -> i.toString())
-                .collect(Collectors.toList());
+                .toList();
     }
 
     List<UserDto> findByLastName(String lastName) {
         return userRepository.findAllByLastNameContainingIgnoreCase(lastName)
                 .stream()
                 .map(UserMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     UserDto save(UserDto userDto) {
@@ -76,7 +75,7 @@ public class UserService {
                 .orElseThrow(UserNotFoundException::new)
                 .stream()
                 .map(AssignmentMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 

@@ -35,13 +35,13 @@ public class AssetService {
         return mapAndSave(assetDto);
     }
 
-    AssetDto update(AssetDto asset) {
-        Optional<Asset> assetBySerialNo = assetRepository.findBySerialNumber(asset.getSerialNumber());
+    AssetDto update(AssetDto assetDto) {
+        Optional<Asset> assetBySerialNo = assetRepository.findBySerialNumber(assetDto.getSerialNumber());
         assetBySerialNo.ifPresent(a -> {
-            if(!a.getId().equals(asset.getId()))
+            if(!a.getId().equals(assetDto.getId()))
                 throw new DuplicateSerialNumberException();
         });
-        return mapAndSave(asset);
+        return mapAndSave(assetDto);
     }
 
     private AssetDto mapAndSave(AssetDto assetDto) {
