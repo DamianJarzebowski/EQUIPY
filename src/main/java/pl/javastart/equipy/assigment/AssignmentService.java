@@ -1,5 +1,6 @@
 package pl.javastart.equipy.assigment;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import pl.javastart.equipy.assent.Asset;
@@ -10,20 +11,13 @@ import pl.javastart.equipy.user.UserRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
+@RequiredArgsConstructor
 @Service
 public class AssignmentService {
 
-    private AssignmentRepository assignmentRepository;
-    private AssetRepository assetRepository;
-    private UserRepository userRepository;
-
-    public AssignmentService(AssignmentRepository assignmentRepository,
-                             AssetRepository assetRepository,
-                             UserRepository userRepository) {
-        this.assignmentRepository = assignmentRepository;
-        this.assetRepository = assetRepository;
-        this.userRepository = userRepository;
-    }
+    private final AssignmentRepository assignmentRepository;
+    private final AssetRepository assetRepository;
+    private final UserRepository userRepository;
 
     AssignmentDto createAssignment(AssignmentDto assignmentDto) {
         Optional<Assignment> activeAssignmentForAsset = assignmentRepository
