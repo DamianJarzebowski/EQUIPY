@@ -37,7 +37,7 @@ public class AssetController {
                 .path("/{id}")
                 .buildAndExpand(savedAsset.getId())
                 .toUri();
-        return ResponseEntity.created(location).body(savedAsset);
+        return ResponseEntity.created(location).build();
     }
 
     @GetMapping("/{id}")

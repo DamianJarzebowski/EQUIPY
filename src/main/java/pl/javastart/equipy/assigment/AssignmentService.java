@@ -27,7 +27,7 @@ public class AssignmentService {
         });
         Optional<User> user = userRepository.findById(assignmentDto.getUserId());
         Optional<Asset> asset = assetRepository.findById(assignmentDto.getAssetId());
-        Assignment assignment = new Assignment();
+        var assignment = new Assignment();
         Long userId = assignmentDto.getUserId();
         Long assetId = assignmentDto.getAssetId();
         assignment.setUser(user.orElseThrow(() ->
