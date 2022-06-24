@@ -1,5 +1,6 @@
 package pl.javastart.equipy.user;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,15 +11,12 @@ import pl.javastart.equipy.assigment.AssignmentDto;
 import java.net.URI;
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
 
     private final UserService userService;
-
-    UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @GetMapping("")
     public List<UserDto> findAll(String lastName) {
@@ -28,7 +26,6 @@ public class UserController {
             return userService.findAll();
     }
 
-    // Co to jest to uri i servleturi... (Cos stare śmierdzi i tak sie nie robi, servlet nie istnieja w javie reaktywnej)
     @PostMapping("")
     public ResponseEntity<UserDto> save(@RequestBody UserDto user) {
         if (user.getId() != null)
@@ -42,7 +39,6 @@ public class UserController {
         return ResponseEntity.created(location).body(savedUser);
     }
 
-    // ResponseEntity do poczytania...
     @GetMapping("/{id}")
     public ResponseEntity<UserDto> findById(@PathVariable Long id) {
         return userService.findById(id)
@@ -51,10 +47,10 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto user) {
-        if(!id.equals(user.getId()))
+    public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto userDto) {
+        if(!id.equals(userDto.getId()))
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Aktualizowany obiekt musi mieć id zgodne z id w ścieżce zasobu");
-        UserDto updatedUser = userService.update(user);
+        UserDto updatedUser = userService.update(userDto);
         return ResponseEntity.ok(updatedUser);
     }
 
